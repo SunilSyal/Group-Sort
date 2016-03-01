@@ -1,0 +1,260 @@
+<html>
+<script>
+  var arr = [],
+
+    arr_2 = [],
+    selectionOutput, groupOutput, heapOutput, quickOutput, bubbleOutput;
+
+  for (var i = 0; i < 50000; i++) {
+    arr[i] = Math.floor(Math.random() * 600000);
+  }
+  console.log("Total element sorted: " + arr.length);
+  arr_1 = arr.slice(0);
+
+  console.log("Group Sort ==============================");
+  //console.log(arr_1);
+
+  console.time("Group Sort");
+  groupOutput = fnGroupSort(arr_1);
+  //console.log(groupOutput);
+  console.timeEnd("Group Sort");
+
+  arr_1 = arr.slice(0);
+  console.log("Selection Sort ==============================");
+  //console.log(arr_1);
+
+  console.time("Selection Sort");
+  selectionOutput = fnSelectionSort(arr_1, 0, arr_1.length);
+  //console.log(selectionOutput);
+  console.timeEnd("Selection Sort");
+
+  arr_1 = arr.slice(0);
+  console.log("Bubble Sort ==============================");
+  //console.log(arr_1);
+
+  console.time("Bubble Sort");
+  bubbleOutput = bubbleSort(arr_1);
+  //console.log(bubbleOutput);
+  console.timeEnd("Bubble Sort");
+
+  arr_1 = arr.slice(0);
+  console.log("Heap Sort ==============================");
+  //console.log(arr_1);
+
+  console.time("Heap Sort");
+  heapOutput = heapSort(arr_1);
+  //console.log(selectionOutput);
+  console.timeEnd("Heap Sort");
+
+  arr_1 = arr.slice(0);
+  console.log("Quick Sort ==============================");
+  //console.log(arr_1);
+
+  console.time("Quick Sort");
+  quickOutput = quickSort(arr_1, 0, arr_1.length - 1);
+  //console.log(quickOutput);
+  console.timeEnd("Quick Sort");
+
+  console.log("Output of all the methods is same: ")
+  console.log(selectionOutput.toString() === groupOutput.toString());
+  console.log(heapOutput.toString() === groupOutput.toString())
+  console.log(quickOutput.toString() === groupOutput.toString())
+  console.log(bubbleOutput.toString() === groupOutput.toString())
+
+  function fnSelectionSort(arr, startIndex, count) {
+    var i = startIndex,
+      j, temp, len = startIndex + count;
+    for (; i < len; i++) {
+      for (j = i + 1; j < len; j++) {
+        if (arr[i] >= arr[j]) {
+          temp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = temp;
+        }
+      }
+    }
+    return arr;
+  }
+
+  function fnGroupSort(arr) {
+    var i = 0,
+      startIndex = 0,
+      endIndex, index = -1,
+      j, temp, indexArr = [],
+      len = arr.length,
+      sum = 0,
+      counter = 0,
+      max = arr[0],
+      min = arr[0],
+      uniqueIndexes = [];
+
+    // Calculate max, min and sum of the data set
+    for (var i = 0; i < len; i++) {
+      max = Math.max(max, arr[i]);
+      min = Math.min(min, arr[i]);
+      sum += Math.abs(arr[i]);
+    }
+
+    // All elements are 0. No sorting required
+    if (sum === 0) return arr;
+
+    // Constant used to calculate index values
+    C = ((len - 1) * sum) / (max - min);
+
+    // Index values of all the elements
+    for (var i = 0; i < len; i++) {
+      indexArr[i] = Math.floor(((arr[i] - min) / sum) * C);
+      //fnAddIndex(indexArr[i]);
+      uniqueIndexes[indexArr[i]] = indexArr[i];
+    };
+
+    // Index values of all the elements
+    var indexLen = uniqueIndexes.length;
+    for (var i = 0; i < indexLen; i++) {
+      if (!uniqueIndexes[i] && uniqueIndexes[i] != 0) {
+        uniqueIndexes.splice(i, 1);
+        if (i < indexLen - 1) {
+          i--;
+          indexLen--;
+        }
+      }
+
+    };
+
+    /*function fnAddIndex(val) {
+      if (uniqueIndexes.length == 0) {
+        uniqueIndexes.push(val);
+        return;
+      }
+      for (var j = 0; j < uniqueIndexes.length; j++) {
+        if (uniqueIndexes[j] == val) break;
+
+        if (uniqueIndexes[j] > val) {
+          uniqueIndexes.splice(j, 0, val);
+          break;
+        }
+
+        if (j == uniqueIndexes.length - 1) {
+          uniqueIndexes.push(val)
+        }
+      }
+    }*/
+
+    while (1) {
+      index = uniqueIndexes[counter];
+      var count = 0;
+      if (index == len || startIndex >= len - 1) break;
+      for (var i = startIndex; i < len; i++) {
+        if (indexArr[i] == index) {
+          temp = arr[startIndex + count];
+          arr[startIndex + count] = arr[i];
+          arr[i] = temp;
+
+          temp = indexArr[startIndex + count];
+          indexArr[startIndex + count] = indexArr[i];
+          indexArr[i] = temp;
+
+          count++;
+        }
+
+      }
+      counter++;
+      if (count == 0) continue;
+
+      arr = fnSelectionSort(arr, startIndex, count);
+      //arr = quickSort(arr, startIndex, startIndex + count);
+
+      startIndex = startIndex + count;
+    }
+
+    return arr;
+  }
+
+  // Source of heap sort - http://jsfiddle.net/mbL5enL5/1/
+  function heapSort(array) {
+    var swap = function(array, firstIndex, secondIndex) {
+      var temp = array[firstIndex];
+      array[firstIndex] = array[secondIndex];
+      array[secondIndex] = temp;
+    };
+    var maxHeap = function(array, i) {
+      var l = 2 * i;
+      var r = l + 1;
+      var largest;
+      if (l < array.heapSize && array[l] > array[i]) {
+        largest = l;
+      } else {
+        largest = i;
+      }
+      if (r < array.heapSize && array[r] > array[largest]) {
+        largest = r;
+      }
+      if (largest != i) {
+        swap(array, i, largest);
+        maxHeap(array, largest);
+      }
+    };
+    var buildHeap = function(array) {
+      array.heapSize = array.length;
+      for (var i = Math.floor(array.length / 2); i >= 0; i--) {
+        maxHeap(array, i);
+      }
+    };
+    buildHeap(array);
+    for (var i = array.length - 1; i >= 1; i--) {
+      swap(array, 0, i);
+      array.heapSize--;
+      maxHeap(array, 0);
+    }
+    return array;
+  };
+
+  // Quick sort - Source http://stackoverflow.com/questions/5185864/javascript-quicksort
+  function quickSort(arr, left, right) {
+    var i = left;
+    var j = right;
+    var tmp;
+    pivotidx = (left + right) / 2;
+    var pivot = parseInt(arr[pivotidx.toFixed()]);
+    /* partition */
+    while (i <= j) {
+      while (parseInt(arr[i]) < pivot)
+        i++;
+      while (parseInt(arr[j]) > pivot)
+        j--;
+      if (i <= j) {
+        tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+        i++;
+        j--;
+      }
+    }
+
+    /* recursion */
+    if (left < j)
+      quickSort(arr, left, j);
+    if (i < right)
+      quickSort(arr, i, right);
+    return arr;
+  }
+
+  // Bubble sort
+  function bubbleSort(a) {
+    var swapped;
+    do {
+      swapped = false;
+      for (var i = 0; i < a.length - 1; i++) {
+        if (a[i] > a[i + 1]) {
+          var temp = a[i];
+          a[i] = a[i + 1];
+          a[i + 1] = temp;
+          swapped = true;
+        }
+      }
+    } while (swapped);
+    return a;
+  }
+</script>
+
+</html>
