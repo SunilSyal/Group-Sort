@@ -29,12 +29,12 @@ X1 * (n - 1) / 2 + X2 * (n - 1) / 2 + ------- + Xr * (n - 1) / 2 = n * (n - 1) /
 
 Also 
 Xi < n 						(1 <= i <= r) 		(From 2) 
-	Xi – 1 < n – 1 					(1 <= i <= r)
+=>	Xi – 1 < n – 1 					(1 <= i <= r)
 
 Also 
 	Xi >= 1						(1 <= i <= r)
-	Xi / 2 > 0 					(1 <= i <= r)
-	(Xi / 2) * (Xi – 1) < (Xi / 2) * (n – 1) 
+=>	Xi / 2 > 0 					(1 <= i <= r)
+=>	(Xi / 2) * (Xi – 1) < (Xi / 2) * (n – 1) 
 
 Using this result in (3), we get 
 
@@ -68,14 +68,14 @@ For max, the index value is n – 1 i.e.
 We know that max is the largest element of the list i.e 
 
 	arr_1[i] <= max 				(0 <= i <= 14)
-	(arr_1[i] / sum) *C <= (max / sum) * C 	(0 <= i <= 14)
+=>	(arr_1[i] / sum) *C <= (max / sum) * C 	(0 <= i <= 14)
 
 Also 
 	Sum > 0 	(as there is at least one +ve value) 
 And 
 	C > 0 
-	0 <= (arr_1[i] / sum) * C <= n-1 
-	0 <= [arr_1[i] / sum) * C] <= n-1 
+=>	0 <= (arr_1[i] / sum) * C <= n-1 
+=>	0 <= [arr_1[i] / sum) * C] <= n-1 
 
 After calculating the index values; search for all the elements with the minimum index value i.e. 0 in the arr_2. Interchange the element of arr_1 with 0 index value with the first element of arr_1. Also interchange the corresponding index values in the arr_2. If there is any other element in arr_1 with index value 0, interchange it the second element of the arr_1 whereas the corresponding index value in the arr_2 will be interchanged with the second element of the arr_2. After n comparisons for 0 index value, all the elements of arr_1 with index value 0 (say X1) are at the first X1 positions in arr_1 i.e 0 to X1 – 1. 
 
@@ -108,9 +108,9 @@ Let 	i1 < i2
 Let’s prove that a is smaller than b. Consider C is the constant and sum is the sum of all the elements (equation 4).
 
 Now 	i1 < i2 
-	[(a / sum) * C] < [(b / sum) * C]
-	(a / sum) * C < (b / sum) * C
-	a < b						( as sum and C are +ve numbers) 
+=>	[(a / sum) * C] < [(b / sum) * C]
+=>	(a / sum) * C < (b / sum) * C
+=>	a < b						( as sum and C are +ve numbers) 
 
 So there is no need to compare an element with elements with different index number in the data set. The elements of a group are compared and sorted within their own group only. The groups are already in the ascending order as it is clear from the above result. 
 
