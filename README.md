@@ -1,4 +1,5 @@
 Group Sort
+-------------------------------------------------------------
 
 Authour - Sunil Syal
 
@@ -8,7 +9,7 @@ A new sorting algorithm which divides the data set into multiple smaller sets on
 
 P.S - I have been working on this algorithm since 2002 ;). Got some good results in year 2016 - better than selection and bubble. 
 
-Group Sort - Description
+Description
 -------------------------------------------------------------
 
 Sorting n elements using selection sort requires 
