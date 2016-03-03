@@ -1,7 +1,7 @@
 Group Sort
 -------------------------------------------------------------
 
-Authour - Sunil Syal
+Author - Sunil Syal
 
 Email - sunil.syal@gmail.com
 
