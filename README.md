@@ -1,5 +1,7 @@
-Group Sort 
+Group Sort
+
 Authour - Sunil Syal
+
 Email - sunil.syal@gmail.com
 
 A new sorting algorithm which divides the data set into multiple smaller sets on the basis of their expected position in the entire set. Data elements with same expected position are compared with each other and not with the entire set. This reduces the number of comparisons as compared to O(n2) for selection and bubble sort. This algorithm is suitable for large set of data when compared with Selection and Bubble sort. I invite developer community to put thier thoughts to improve the algorithm to make it comparable to heap or quick sort. 
