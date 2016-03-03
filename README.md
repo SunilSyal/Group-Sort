@@ -1,4 +1,10 @@
 Group Sort 
+Authour - Sunil Syal
+Email - sunil.syal@gmail.com
+
+A new sorting algorithm which divides the data set into multiple smaller sets on the basis of their expected position in the entire set. Data elements with same expected position are compared with each other and not with the entire set. This reduces the number of comparisons as compared to O(n2) for selection and bubble sort. This algorithm is suitable for large set of data when compared with Selection and Bubble sort. I invite developer community to put thier thoughts to improve the algorithm to make it comparable to heap or quick sort. 
+
+P.S - I have been working on this algorithm since 2002 ;). Got some good results in year 2016 - better than selection and bubble. 
 
 Sorting n elements using selection sort requires 
 
