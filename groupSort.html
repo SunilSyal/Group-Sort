@@ -1,57 +1,55 @@
 <html>
 <script>
   var arr = [],
-
-    arr_2 = [],
     selectionOutput, groupOutput, heapOutput, quickOutput, bubbleOutput;
 
   for (var i = 0; i < 50000; i++) {
     arr[i] = Math.floor(Math.random() * 600000);
   }
   console.log("Total element sorted: " + arr.length);
-  arr_1 = arr.slice(0);
+  dataSetArr = arr.slice(0);
 
   console.log("Group Sort ==============================");
-  //console.log(arr_1);
+  //console.log(dataSetArr);
 
   console.time("Group Sort");
-  groupOutput = fnGroupSort(arr_1);
+  groupOutput = fnGroupSort(dataSetArr);
   //console.log(groupOutput);
   console.timeEnd("Group Sort");
 
-  arr_1 = arr.slice(0);
+  dataSetArr = arr.slice(0);
   console.log("Selection Sort ==============================");
-  //console.log(arr_1);
+  //console.log(dataSetArr);
 
   console.time("Selection Sort");
-  selectionOutput = fnSelectionSort(arr_1, 0, arr_1.length);
+  selectionOutput = fnSelectionSort(dataSetArr, 0, dataSetArr.length);
   //console.log(selectionOutput);
   console.timeEnd("Selection Sort");
 
-  arr_1 = arr.slice(0);
+  dataSetArr = arr.slice(0);
   console.log("Bubble Sort ==============================");
-  //console.log(arr_1);
+  //console.log(dataSetArr);
 
   console.time("Bubble Sort");
-  bubbleOutput = bubbleSort(arr_1);
+  bubbleOutput = bubbleSort(dataSetArr);
   //console.log(bubbleOutput);
   console.timeEnd("Bubble Sort");
 
-  arr_1 = arr.slice(0);
+  dataSetArr = arr.slice(0);
   console.log("Heap Sort ==============================");
-  //console.log(arr_1);
+  //console.log(dataSetArr);
 
   console.time("Heap Sort");
-  heapOutput = heapSort(arr_1);
+  heapOutput = heapSort(dataSetArr);
   //console.log(selectionOutput);
   console.timeEnd("Heap Sort");
 
-  arr_1 = arr.slice(0);
+  dataSetArr = arr.slice(0);
   console.log("Quick Sort ==============================");
-  //console.log(arr_1);
+  //console.log(dataSetArr);
 
   console.time("Quick Sort");
-  quickOutput = quickSort(arr_1, 0, arr_1.length - 1);
+  quickOutput = quickSort(dataSetArr, 0, dataSetArr.length - 1);
   //console.log(quickOutput);
   console.timeEnd("Quick Sort");
 
@@ -89,9 +87,10 @@
       uniqueIndexes = [];
 
     // Calculate max, min and sum of the data set
+    max = Math.max.apply(null, arr);
+    min = Math.min.apply(null, arr);
+
     for (var i = 0; i < len; i++) {
-      max = Math.max(max, arr[i]);
-      min = Math.min(min, arr[i]);
       sum += Math.abs(arr[i]);
     }
 
@@ -120,25 +119,6 @@
       }
 
     };
-
-    /*function fnAddIndex(val) {
-      if (uniqueIndexes.length == 0) {
-        uniqueIndexes.push(val);
-        return;
-      }
-      for (var j = 0; j < uniqueIndexes.length; j++) {
-        if (uniqueIndexes[j] == val) break;
-
-        if (uniqueIndexes[j] > val) {
-          uniqueIndexes.splice(j, 0, val);
-          break;
-        }
-
-        if (j == uniqueIndexes.length - 1) {
-          uniqueIndexes.push(val)
-        }
-      }
-    }*/
 
     while (1) {
       index = uniqueIndexes[counter];
