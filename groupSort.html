@@ -59,6 +59,10 @@
   console.log(quickOutput.toString() === groupOutput.toString())
   console.log(bubbleOutput.toString() === groupOutput.toString())
 
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  // Selection Sort
   function fnSelectionSort(arr, startIndex, count) {
     var i = startIndex,
       j, temp, len = startIndex + count;
@@ -74,6 +78,10 @@
     return arr;
   }
 
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  // Group Sort
   function fnGroupSort(arr) {
     var i = 0,
       startIndex = 0,
@@ -82,13 +90,9 @@
       len = arr.length,
       sum = 0,
       counter = 0,
-      max = arr[0],
-      min = arr[0],
-      uniqueIndexes = [];
-
-    // Calculate max, min and sum of the data set
-    max = Math.max.apply(null, arr);
-    min = Math.min.apply(null, arr);
+      uniqueIndexes = [],
+      max = Math.max.apply(null, arr),
+      min = Math.min.apply(null, arr);
 
     for (var i = 0; i < len; i++) {
       sum += Math.abs(arr[i]);
@@ -103,7 +107,6 @@
     // Index values of all the elements
     for (var i = 0; i < len; i++) {
       indexArr[i] = Math.floor(((arr[i] - min) / sum) * C);
-      //fnAddIndex(indexArr[i]);
       uniqueIndexes[indexArr[i]] = indexArr[i];
     };
 
@@ -150,7 +153,10 @@
     return arr;
   }
 
-  // Source of heap sort - http://jsfiddle.net/mbL5enL5/1/
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  // Heap sort - Source - http://jsfiddle.net/mbL5enL5/1/
   function heapSort(array) {
     var swap = function(array, firstIndex, secondIndex) {
       var temp = array[firstIndex];
@@ -189,6 +195,9 @@
     return array;
   };
 
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
   // Quick sort - Source http://stackoverflow.com/questions/5185864/javascript-quicksort
   function quickSort(arr, left, right) {
     var i = left;
@@ -219,6 +228,9 @@
     return arr;
   }
 
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
   // Bubble sort
   function bubbleSort(a) {
     var swapped;
